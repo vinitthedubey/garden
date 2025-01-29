@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Selection</title>
+    <link rel="stylesheet" href="static/style2.css">
+</head>
+<body>
+    <h1 class="title">Plants - Language Selection</h1>
+    
+    <form action="/set_language" method="POST" class="language-selection">
+        <label for="languages" class="dropdown-label">Languages:</label>
+        <select id="languages" name="language" class="dropdown" required>
+            <option value="">Select a language</option>
+            <option value="hi">Hindi</option>
+            <option value="en">English</option>
+            <option value="mr">Marathi</option>
+            <option value="bn">Bengali</option>
+            <option value="ru">Russian</option>
+            <option value="es">Spanish</option>
+            <option value="te">Telugu</option>
+            <option value="ta">Tamil</option>
+        </select>
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <div class="plant-container">
+        <!-- Plant 1 -->
+        <div class="plant-box">
+            <img src="/static/data/image/plants/tulsi-plant-leaves.jpg" alt="Tulsi" class="plant-image">
+            <h2 class="plant-name">Tulsi</h2>
+            <p class="medicinal-name"><strong>Medicinal Name:</strong> Ocimum sanctum</p>
+            <p class="medicinal-uses"><strong>Uses:</strong> Treats cough, cold, and boosts immunity.</p>
+            <p class="habitat"><strong>Habitat:</strong> Grows widely in tropical and subtropical regions. It is commonly found in home gardens, temples, and rural areas in India.</p>
+        </div>
+
+        <!-- Plant 2 -->
+        <div class="plant-box">
+            <img src="/static/data/image/plants/aloevera.jpg" alt="Aloe Vera" class="plant-image">
+            <h2 class="plant-name">Aloe Vera</h2>
+            <p class="medicinal-name"><strong>Medicinal Name:</strong> Aloe barbadensis miller</p>
+            <p class="medicinal-uses"><strong>Uses:</strong> Soothes burns, improves digestion, and hydrates skin.</p>
+            <p class="habitat"><strong>Habitat:</strong> Native to arid regions. Aloe Vera prefers sandy, well-drained soil and is commonly found in dry, tropical, and subtropical climates.</p>
+
+        </div>
+
+        <!-- Plant 3 -->
+        <div class="plant-box">
+            <img src="/static/data/image/plants/Arq Gulab (Rosa damascena).jpg" alt="Arq Gulab" class="plant-image">
+            <h2 class="plant-name">Rosa damascena</h2>
+            <p class="medicinal-name"><strong>Medicinal Name:</strong> Rosa damascena</p>
+            <p class="medicinal-uses"><strong>Uses:</strong> Acts as a coolant, relieves stress, and improves skin health.</p>
+            <p class="habitat"><strong>Habitat:</strong> Grows in temperate and subtropical climates. It is typically cultivated in regions with cool temperatures and well-drained, loamy soil.</p>
+        </div>
+    </div>
+</body>
+</html>

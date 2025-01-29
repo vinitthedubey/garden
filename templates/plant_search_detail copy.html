@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Detail</title>
+</head>
+<body>
+    <h1>{{ plant.name }} - Details</h1>
+    <p>Category: {{ plant.category }}</p>
+    <p>Features: {{ plant.features | join(", ") }}</p>
+    <p>More details about how this plant is used...</p>
+    <a href="/">Back to Home</a>
+</body>
+</html>

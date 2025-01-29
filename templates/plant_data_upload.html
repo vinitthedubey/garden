@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Data Upload</title>
+    <link rel="stylesheet" href="/static/styles4.css">
+</head>
+<body>
+    <h1>Plant Data Upload Form</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/submit_plant_data" method="post">
+        <label>Plant Name:</label><br>
+        <input type="text" name="plant_name" required><br>
+
+        <label>Full Tree Image (URL):</label><br>
+        <input type="url" name="full_tree_image" required><br>
+
+        <label>Leaf Image (URL):</label><br>
+        <input type="url" name="leaf_image" required><br>
+
+        <label>Botanical Name:</label><br>
+        <input type="text" name="botanical_name" required><br>
+
+        <label>Common Names (comma-separated):</label><br>
+        <input type="text" name="common_names" required><br>
+
+        <h3>Habitat</h3>
+        <label>Regions:</label><br>
+        <input type="text" name="regions" required><br>
+
+        <label>Soil Type:</label><br>
+        <input type="text" name="soil_type" required><br>
+
+        <label>Climate:</label><br>
+        <input type="text" name="climate" required><br>
+
+        <label>Altitude:</label><br>
+        <input type="text" name="altitude" required><br>
+
+        <label>Common Locations:</label><br>
+        <input type="text" name="common_locations" required><br>
+
+        <h3>Medicinal Uses</h3>
+        <label>Skin Health:</label><br>
+        <input type="text" name="skin_health" required><br>
+
+        <label>Oral Hygiene:</label><br>
+        <input type="text" name="oral_hygiene" required><br>
+
+        <label>Blood Purification:</label><br>
+        <input type="text" name="blood_purification" required><br>
+
+        <label>Immune Booster:</label><br>
+        <input type="text" name="immune_booster" required><br>
+
+        <label>Digestive Aid:</label><br>
+        <input type="text" name="digestive_aid" required><br>
+
+        <h3>Methods of Cultivation</h3>
+        <label>Climate and Soil Requirements:</label><br>
+        <input type="text" name="climate_soil" required><br>
+
+        <label>Propagation:</label><br>
+        <input type="text" name="propagation" required><br>
+
+        <label>Sowing:</label><br>
+        <input type="text" name="sowing" required><br>
+
+        <label>Irrigation:</label><br>
+        <input type="text" name="irrigation" required><br>
+
+        <label>Fertilization:</label><br>
+        <input type="text" name="fertilization" required><br>
+
+        <label>Harvesting:</label><br>
+        <input type="text" name="harvesting" required><br>
+
+        <label>Additional Care:</label><br>
+        <input type="text" name="additional_care" required><br>
+
+        <label>Video Link:</label><br>
+        <input type="url" name="video_link" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

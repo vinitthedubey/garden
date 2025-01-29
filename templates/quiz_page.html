@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="/static/styles5.css">
+    <script>
+        function handleButtonClick(button, boxId) {
+            const question = button.dataset.question;
+            const selectedOption = button.dataset.option;
+            const correctOption = button.dataset.correct;
+            const explanation = button.dataset.explanation;
+
+            fetch('/check_answer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `question=${encodeURIComponent(question)}&selected_option=${encodeURIComponent(selectedOption)}&correct_option=${encodeURIComponent(correctOption)}&explanation=${encodeURIComponent(explanation)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                const box = document.getElementById(boxId);
+                box.innerHTML = `<p>${data.result}</p>`;
+                box.classList.add(data.status === "correct" ? "correct-box" : "incorrect-box");
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+
+
+</head>
+<body>
+    <h1>Quiz</h1>
+
+    <div class="quiz-container">
+        {% for question in questions %}
+        <div class="quiz-box" id="quiz-box-{{ loop.index }}">
+            <p class="question">{{ question['ques'] }}</p>
+            <div>
+                <button 
+                    class="quiz-option"
+                    data-question="{{ question['ques']|e }}"
+                    data-option="option1"
+                    data-correct="{{ question['correct_option']|e }}"
+                    data-explanation="{{ question['Explanation']|e }}"
+                    onclick="handleButtonClick(this, 'quiz-box-{{ loop.index }}')">
+                    {{ question['option1'] }}
+                </button>
+                <button 
+                    class="quiz-option"
+                    data-question="{{ question['ques']|e }}"
+                    data-option="option2"
+                    data-correct="{{ question['correct_option']|e }}"
+                    data-explanation="{{ question['Explanation']|e }}"
+                    onclick="handleButtonClick(this, 'quiz-box-{{ loop.index }}')">
+                    {{ question['option2'] }}
+                </button>
+                <button 
+                    class="quiz-option"
+                    data-question="{{ question['ques']|e }}"
+                    data-option="option3"
+                    data-correct="{{ question['correct_option']|e }}"
+                    data-explanation="{{ question['Explanation']|e }}"
+                    onclick="handleButtonClick(this, 'quiz-box-{{ loop.index }}')">
+                    {{ question['option3'] }}
+                </button>
+                <button 
+                    class="quiz-option"
+                    data-question="{{ question['ques']|e }}"
+                    data-option="option4"
+                    data-correct="{{ question['correct_option']|e }}"
+                    data-explanation="{{ question['Explanation']|e }}"
+                    onclick="handleButtonClick(this, 'quiz-box-{{ loop.index }}')">
+                    {{ question['option4'] }}
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

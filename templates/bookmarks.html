@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks</title>
+    <link rel="stylesheet" href="/static/styles6.css">
+</head>
+<body>
+    <h1 class="sitename">Bookmarks</h1>
+
+    <div class="container">
+        {% if bookmarks %}
+            {% for bookmark in bookmarks %}
+                <div class="bookmark-box">
+                    <h3>{{ bookmark["plant_name"] }}</h3>
+                    <p>{{ bookmark["notes"] }}</p>
+                    <a href="/plant_search_detail?plant_name={{ bookmark['plant_name'] }}" class="view-details">View Details</a>
+                    <button class="delete-btn" onclick="deleteBookmark('{{ bookmark['_id'] }}')">Delete</button>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No bookmarks available.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function deleteBookmark(bookmarkId) {
+            fetch(`/delete_bookmark/${bookmarkId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Bookmark deleted successfully!");
+                    location.reload();
+                } else {
+                    alert("Error deleting bookmark!");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

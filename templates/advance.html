@@ -1,0 +1,133 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Finder</title>
+</head>
+<body>
+    <h1>Select Category and Feature</h1>
+    <form method="POST" action="/plants">
+        <label for="category">Select Category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        
+        <label for="feature">Select Feature:</label>
+        <select name="feature" id="feature">
+            <option value="Digestion">Digestion</option>
+            <option value="Cold & Cough">Cold & Cough</option>
+            <option value="Immunity">Immunity</option>
+            <option value="Inflammation">Inflammation</option>
+            <option value="Pain Relief">Pain Relief</option>
+            <option value="Skin Health">Skin Health</option>
+            <option value="Heart Health">Heart Health</option>
+            <option value="Liver Health">Liver Health</option>
+            <option value="Antioxidant Properties">Antioxidant Properties</option>
+        </select>
+        <br><br>
+        
+        <button type="submit">Find Plants</button>
+    </form>
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Finder</title>
+    <script>
+        function updateFeatureDropdowns() {
+            const featureCount = parseInt(document.getElementById("feature_count").value);
+            const featureContainer = document.getElementById("feature_container");
+
+            // Clear any existing feature dropdowns
+            featureContainer.innerHTML = "";
+
+            // Add the specified number of feature dropdowns
+            for (let i = 0; i < featureCount; i++) {
+                const label = document.createElement("label");
+                label.innerText = `Select Feature ${i + 1}:`;
+                label.setAttribute("for", `feature_${i}`);
+
+                const select = document.createElement("select");
+                select.name = `feature_${i}`;
+                select.id = `feature_${i}`;
+
+                const options = [
+                    "Digestion",
+                    "Cold & Cough",
+                    "Immunity",
+                    "Inflammation",
+                    "Pain Relief",
+                    "Skin Health",
+                    "Heart Health",
+                    "Liver Health",
+                    "Antioxidant Properties"
+                ];
+
+                options.forEach(option => {
+                    const optElement = document.createElement("option");
+                    optElement.value = option;
+                    optElement.innerText = option;
+                    select.appendChild(optElement);
+                });
+
+                featureContainer.appendChild(label);
+                featureContainer.appendChild(select);
+                featureContainer.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Select Category and Features</h1>
+    <form method="POST" action="/plants">
+        <label for="category">Select Category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="feature_count">How many features do you want to select?</label>
+        <select name="feature_count" id="feature_count" onchange="updateFeatureDropdowns()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br><br>
+
+        <div id="feature_container">
+            <!-- Feature dropdowns will be dynamically added here -->
+            <label for="feature_0">Select Feature 1:</label>
+            <select name="feature_0" id="feature_0">
+                <option value="Digestion">Digestion</option>
+                <option value="Cold & Cough">Cold & Cough</option>
+                <option value="Immunity">Immunity</option>
+                <option value="Inflammation">Inflammation</option>
+                <option value="Pain Relief">Pain Relief</option>
+                <option value="Skin Health">Skin Health</option>
+                <option value="Heart Health">Heart Health</option>
+                <option value="Liver Health">Liver Health</option>
+                <option value="Antioxidant Properties">Antioxidant Properties</option>
+            </select>
+            <br>
+        </div>
+
+        <button type="submit">Find Plants</button>
+    </form>
+</body>
+</html>

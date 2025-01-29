@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Details</title>
+    <link rel="stylesheet" href="/static/styles3.css">
+</head>
+<body>
+    <h1 class="sitename">Plant Details</h1>
+
+    {% if plant_data and plant_name %}
+        <div class="section">
+            <h2 class="section-title">Full Tree Image</h2>
+            <img src="{{ plant_data[plant_name][0] }}" alt="Full Tree" loading="lazy" class="Full-img">
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Leaf Image</h2>
+            <img src="{{ plant_data[plant_name][1] }}" alt="Leaf" loading="lazy" class="Leaf-img">
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Botanical Name</h2>
+            <p>{{ plant_data[plant_name][2] }}</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Common Names</h2>
+            <ul>
+                {% for name in plant_data[plant_name][3] %}
+                    <li>{{ name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Habitat</h2>
+            <ul>
+                {% for key, value in plant_data[plant_name][4]['habitat'].items() %}
+                    <li><b>{{ key }}:</b> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Medicinal Uses</h2>
+            <ul>
+                {% for key, value in plant_data[plant_name][5]['medicinal uses'].items() %}
+                    <li><b>{{ key }}:</b> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Method of Cultivation</h2>
+            <ul>
+                {% for key, value in plant_data[plant_name][6]['methods of cultivation'].items() %}
+                    {% if key == "vedio link" %}
+                        
+                            <iframe width="560" height="315" src="{{value}}" loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        
+                    {% else %}
+                        <li><b>{{ key }}:</b> {{ value }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Add to Bookmarks</h2>
+            <form action="/bookmark_plant" method="post">
+                <label for="notes">Write Notes:</label>
+                <textarea name="notes" id="notes" rows="5" required></textarea>
+                <input type="hidden" name="plant_name" value="{{ plant_name }}">
+                <button type="submit" class="bookmark-btn">Bookmark</button>
+            </form>
+        </div>
+    {% else %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>
