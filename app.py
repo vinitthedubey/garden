@@ -497,14 +497,16 @@ def format_response(response):
 #plant store starts
 
 # Sample plant data
-plant_data = {
-    "Neem": ["./static/data/image/Neem/Neem-Full.jpg"],
-    "Tulsi": ["./static/data/image/Tulsi/Tulsi-Full.jpg"],
-    "Aloe Vera": ["./static/data/image/AloeVera/AloeVera-Full.jpg"],
-    "Lemongrass": ["./static/data/image/Lemongrass/Lemongrass-Full.jpg"],
-    "Ashwagandha": ["./static/data/image/Ashwagandha/Ashwagandha-Full.jpg"],
-    "Peppermint": ["./static/data/image/Peppermint/Peppermint-Full.jpg"],
-}
+plant_data = {}
+coll_Store = db["normal_plant_search"]
+plants = coll_Store.find()
+for plant in plants:
+    plant_name = plant["_id"]
+    full_image_path = plant[plant_name][0]
+    
+    # Store in dictionary
+    plant_data[plant_name] = [full_image_path]
+
 plant_prices = {plant: random.randint(50, 200) for plant in plant_data}
 @app.route('/plant_shop')
 def plant_Shop():
