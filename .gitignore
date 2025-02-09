@@ -1,0 +1,29 @@
+# Virtual Environment
+envgarden/
+venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Logs & Database
+logs/
+*.log
+*.sqlite3
+db.sqlite3
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Python package files
+*.egg-info/
+dist/
+build/
+
+# VS Code settings (optional)
+.vscode/
+
+# Ignore environment variables & credentials (if any)
+.env
+*.secret

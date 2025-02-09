@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart 🛒</title>
+    <link rel="stylesheet" href="/static/styles_cart.css">
+    <script>
+        async function updateCart(plantName, action) {
+            const response = await fetch("/update_cart", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({"plant_name": plantName, "action": action})
+            });
+            location.reload(); // Reload the page after updating the cart
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart 🛒</h1>
+        <a href="/mainpage" class="continue-shopping">Continue Shopping 🌱</a>
+    </header>
+
+    <main>
+        <div class="cart-container">
+            {% if cart_items %}  {% for item in cart_items %}
+                    <div class="cart-item">
+                        <img src="{{ item.image }}" alt="{{ item.name }}">  <h3>{{ item.name }}</h3>
+                        <p class="price">₹{{ item.price }}</p>
+                        <div class="quantity-control">
+                            <button onclick="updateCart('{{ item.name }}', 'decrease')">-</button>
+                            <span>{{ item.quantity }}</span>
+                            <button onclick="updateCart('{{ item.name }}', 'increase')">+</button>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="cart-total">
+                    <h2>Total Price: ₹{{ total_price }}</h2>
+                    <a href="/checkout" class="checkout-button">Proceed to Payment 💳</a>
+                </div>
+            {% else %}
+                <p class="empty-cart">Your cart is empty. Add some plants! 🪴</p>
+            {% endif %}
+        </div>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Plant Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>

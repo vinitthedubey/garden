@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout 💳</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e8f4ef; /* Light green background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background: #4caf50; /* Green header */
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
+        .checkout-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #2e7d32; /* Darker green title */
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #c8e6c9; /* Light green border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #388e3c;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Checkout 💳</h1>
+    <div class="checkout-container">
+        <h2>Total Amount: ₹{{ total_price }}</h2>
+
+        <form action="/confirm_payment" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" name="name" id="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br><br>
+
+            <label for="payment_status">Simulate Payment:</label>
+            <select name="payment_status" id="payment_status">
+                <option value="Success">Success ✅</option>
+                <option value="Failed">Failed ❌</option>
+            </select><br><br>
+
+            <button type="submit">Proceed Payment ➡️</button>
+        </form>
+    </div>
+</body>
+</html>

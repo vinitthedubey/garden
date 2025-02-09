@@ -4,16 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plants</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e8f4ef; /* Light green background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background: #4caf50; /* Green header */
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
+        .plant-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 90%; /* Responsive width */
+            max-width: 1200px; /* Limit max width */
+        }
+
+        .plant-box {
+            width: 300px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c8e6c9; /* Light green border */
+            transition: transform 0.2s; /* Smooth hover effect */
+        }
+
+        .plant-box:hover {
+            transform: translateY(-5px); /* Move up slightly on hover */
+        }
+
+        .plant-box h3 {
+            color: #2e7d32; /* Darker green title */
+            margin-bottom: 10px;
+        }
+
+        .plant-box p {
+            margin-bottom: 8px;
+        }
+
+        .plant-box a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #4caf50; /* Green button */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .plant-box a:hover {
+            background: #388e3c;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .plant-box {
+                width: 90%; /* Full width on smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Plants for Selected Feature</h1>
-    <div>
+    <div class="plant-container">
         {% for plant in plants %}
-            <div style="border: 1px solid black; padding: 10px; margin: 10px; width: 300px; display: inline-block;">
+            <div class="plant-box">
                 <h3>{{ plant.name }}</h3>
                 <p>Category: {{ plant.category }}</p>
                 <p>Features: {{ plant.features | join(", ") }}</p>
-                <a href="{{ url_for('plant_detail', plant_name=plant.name) }}">Read More</a>
+                <a href="/plant_detail/{{ plant.name }}">Read More</a>
             </div>
         {% endfor %}
     </div>

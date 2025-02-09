@@ -44,6 +44,14 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/" class="active">Home</a></li>
+          <li class="dropdown"><a href="/mainpage"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="/ai">Ask Ai</a></li>
+              <li><a href="/plant_shop ">Store</a></li>
+              <li><a href="/detect_server">Plant Detection</a></li>
+              
+            </ul>
+          </li>
           <li><a href="/plant_search">Search</a></li>
           <li><a href="/quiz">Quiz</a></li>
           <li><a href="/plant_moment">Plant of Moment</a></li>
@@ -359,35 +367,78 @@
           <h4>Useful Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="about.html">About us</a></li>
-            <li><a href="feature.html">Features</a></li>
+            <li><a href="https://github.com/vinitthedubey">About us</a></li>
+            <li><a href="https://github.com/vinitthedubey/garden">About Project</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Our Features</h4>
           <ul>
-            <li><a href="/login">Quiz</a></li>
-            <li><a href="/login">Plant of Moment</a></li>
-            <li><a href="/login">Plant Search</a></li>
-            <li><a href="/login">Detailed Query</a></li>
-            <li><a href="/login">Virtual Tour</a></li>
+            <li><a href="/quiz">Quiz</a></li>
+            <li><a href="/plant_moment">Plant of Moment</a></li>
+            <li><a href="/plant_search">Plant Search</a></li>
+            <li><a href="/ai">Detailed Query(AI)</a></li>
+            <li><a href="/garden">Virtual Tour</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-          </form>
-        </div>
+          
+          <!-- Flash messages for feedback -->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                  {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+              {% endif %}
+          {% endwith %}
+          
+          <!-- Updated form to use Flask route instead of PHP -->
+          <form id="newsletter-form" class="php-email-form">
+            <div class="newsletter-form">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="submit" value="Subscribe">
+            </div>
+            <div class="loading" style="display: none;">Loading...</div>
+            <div class="error-message" style="display: none;"></div>
+            <div class="sent-message" style="display: none;">Your subscription request has been sent. Thank you!</div>
+        </form>
+        
+        <script>
+        document.getElementById("newsletter-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents form from reloading the page
+        
+            let email = document.getElementById("email").value.trim();
+        
+            if (!email) {
+                alert("Please enter a valid email address!");
+                return;
+            }
+        
+            fetch("/subscribe", {
+                method: "POST",
+                body: new URLSearchParams({ "email": email }),
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Your subscription request has been sent. Thank you!");
+                document.getElementById("email").value = ""; // Clear input field
+            })
+            .catch(error => {
+                alert("Something went wrong. Please try again!");
+            });
+        });
+        </script>
+        
+      
 
       </div>
-    </div>
+
+      </div>
 
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Virtual Garden</strong> <span>All Rights Reserved</span></p>

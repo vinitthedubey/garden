@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Store</title>
+    <link rel="stylesheet" href="/static/styles_store.css">
+    <script>
+        async function addToCart(plantName) {
+            const response = await fetch("/add_to_cart", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({"plant_name": plantName})
+            });
+            const data = await response.json();
+            if (data.success) {
+                document.getElementById(`quantity-${plantName}`).textContent = data.cart[plantName];
+            }
+        }
+
+        async function updateCart(plantName, action) {
+            const response = await fetch("/update_cart", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({"plant_name": plantName, "action": action})
+            });
+            const data = await response.json();
+            if (data.success) {
+                document.getElementById(`quantity-${plantName}`).textContent = data.cart[plantName] || 0;
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Plant Store</h1>
+        <a href="/cart" class="cart-button">🛒 Go to Cart</a>
+    </header>
+
+    <main>
+        <div class="plant-container">
+            {% for plant in plants %}
+            <div class="plant-card">
+                <img src="{{ plant.image }}" alt="{{ plant.name }}">
+                <h3>{{ plant.name }}</h3>
+                <p class="price">₹{{ plant.price }}</p>
+                <div class="quantity-control">
+                    <button onclick="updateCart('{{ plant.name }}', 'decrease')">-</button>
+                    <span id="quantity-{{ plant.name }}">0</span>
+                    <button onclick="addToCart('{{ plant.name }}')">+</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Plant Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>

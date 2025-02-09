@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f0f8f4;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20240610/pngtree-green-blurred-light-effect-background-image_15865457.jpg");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly decreased opacity */
+}
+
+.sitename {
+    color: #2e8b57;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.9); /* Increased opacity for form container */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2e8b57;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white; /* White background for select */
+}
+
+button {
+    background-color: #2e8b57;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1e6b47;
+}

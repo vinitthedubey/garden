@@ -5,3 +5,13 @@ pandas
 numpy
 sklearn
 joblib
+google-generativeai
+googletrans==4.0.0-rc1
+ultralytics
+opencv-python
+pillow
+flask-cors
+torch 
+torchvision
+Flask-Mail
+flask-socketio

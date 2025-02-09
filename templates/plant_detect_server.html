@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Plant Detection</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #8FBC8F; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center content within the container */
+        }
+
+        .video-container {
+            position: relative; /* Needed for overlaying elements */
+            margin-bottom: 20px;
+        }
+
+        #video, #canvas {
+            display: none; /* Hide the raw video and canvas */
+        }
+
+        #processed_image {
+            max-width: 640px; /* Limit image width */
+            height: auto;
+            border-radius: 8px; /* Rounded corners for the image */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: block; /* Prevent image from affecting layout */
+            margin: 0 auto; /* Center the image */
+        }
+
+        h1 {
+            color: #228B22;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555; /* Slightly lighter text color */
+        }
+
+        /* Styles for potential overlays (e.g., plant name, confidence) */
+        .overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        /* Responsive adjustments */
+    @media (max-width: 600px) {
+        .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Garden Plant Detection</h1>
+        <p>Real-time plant identification using your camera.</p>
+        <div class="video-container">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+            <img id="processed_image" alt="Processed Video">
+        </div>
+        <p>Point your camera at a plant to see its name and other information.</p>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');  // For drawing the processed image
+            const context = canvas.getContext('2d');
+            const videoContainer = document.querySelector('.video-container');
+            let stream = null; // Store the video stream
+
+            // Get user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(userStream => {
+                    stream = userStream;
+                    video.srcObject = stream;
+                    video.onloadedmetadata = () => {
+                        video.play();
+                        // Set canvas dimensions to match the video
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        processFrame(); // Start processing frames
+                    };
+                })
+                .catch(error => {
+                    console.error("Error accessing camera:", error);
+                    videoContainer.innerHTML = "<p>Error accessing camera. Please check permissions and try again.</p>";
+                });
+
+            function processFrame() {
+                if (video.videoWidth > 0 && video.videoHeight > 0) { // Check if video dimensions are available
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height); // Draw current video frame to canvas
+                    const imageData = canvas.toDataURL('image/jpeg'); // Get image data as base64
+
+                    // Send image to Flask server
+                    fetch('/process_frame', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ image: imageData })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.processed_image) {
+                            const processedImage = document.getElementById('processed_image');
+                            processedImage.src = data.processed_image;
+                        } else {
+                          console.log("No processed image returned.");
+                        }
+                    })
+                    .catch(error => console.error('Error sending frame:', error));
+
+
+
+                    requestAnimationFrame(processFrame); // Process the next frame
+                } else {
+                    requestAnimationFrame(processFrame); // Check again later
+                }
+            }
+
+
+            // Stop the stream when the page is unloaded
+            window.addEventListener('beforeunload', () => {
+                if (stream) {
+                    const tracks = stream.getTracks();
+                    tracks.forEach(track => track.stop());
+                }
+            });
+        });
+    </script>
+</body>
+</html>

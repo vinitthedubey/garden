@@ -1,12 +1,20 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background: #e8f4ef; /* Light green background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
 h1.sitename {
-    color: green;
+    color: #2e7d32; /* Darker green title */
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .container {
@@ -14,52 +22,68 @@ h1.sitename {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    width: 90%; /* Responsive width */
+    max-width: 1200px; /* Limit max width */
 }
 
 .bookmark-box {
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
+    border: 1px solid #c8e6c9; /* Light green border */
+    border-radius: 10px;
+    padding: 20px; /* Increased padding */
     width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.bookmark-box:hover {
+    transform: translateY(-5px); /* Move up slightly on hover */
 }
 
 .bookmark-box h3 {
     margin: 0 0 10px;
     font-size: 1.2em;
+    color: #2e7d32; /* Darker green title */
 }
 
 .bookmark-box p {
-    font-size: 0.9em;
+    font-size: 0.95em; /* Slightly larger font size */
     color: #555;
+    margin-bottom: 15px; /* Add spacing below notes */
 }
 
 .view-details {
     display: inline-block;
     margin-top: 10px;
     text-decoration: none;
-    color: #007bff;
+    color: #4caf50; /* Green link color */
+    transition: color 0.3s; /* Smooth hover effect */
 }
 
 .view-details:hover {
-    text-decoration: underline;
+    color: #388e3c; /* Darker green on hover */
 }
 
 .delete-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #f44336; /* Red delete button */
+    color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
+    padding: 8px 12px; /* Adjust padding */
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .delete-btn:hover {
-    background-color: #f5c6cb;
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Style the "No bookmarks" message */
+.container p {
+    font-size: 1.1em;
+    color: #757575;
 }

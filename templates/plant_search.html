@@ -4,24 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Garden</title>
-    <link rel="stylesheet" href="/static/styles3.css">
+    <link rel="stylesheet" href="/static/styles_search.css">
+    <script>
+        // JavaScript to update plant dropdown based on selected category
+        function updatePlantList() {
+            let category = document.getElementById("category").value; // Get selected category
+            let plantDropdown = document.getElementById("plant_name"); // Plant dropdown
+            let plantData = JSON.parse('{{ categories | tojson | safe }}'); // Get plant data from Flask
+
+            // Clear existing options
+            plantDropdown.innerHTML = "";
+
+            // Add new options based on selected category
+            if (plantData[category]) {
+                plantData[category].forEach(plant => {
+                    let option = document.createElement("option");
+                    option.value = plant;
+                    option.textContent = plant;
+                    plantDropdown.appendChild(option);
+                });
+            }
+        }
+    </script>
 </head>
 <body>
     <h1 class="sitename">Virtual Garden</h1>
     <div class="form-container">
         <form action="/search_plant" method="POST">
             <label for="category">Select a Category:</label>
-            <select name="category" id="category" required>
-                {% for category, plants in categories.items() %}
+            <select name="category" id="category" required onchange="updatePlantList()">
+                <option value="" disabled selected>Select Category</option>
+                {% for category in categories.keys() %}
                     <option value="{{ category }}">{{ category }}</option>
                 {% endfor %}
             </select>
 
             <label for="plant_name">Select a Plant:</label>
             <select name="plant_name" id="plant_name" required>
-                {% for plant in categories['Ayurveda'] %}
-                    <option value="{{ plant }}">{{ plant }}</option>
-                {% endfor %}
+                <option value="" disabled selected>Select a plant</option>
+                <!-- Options will be added dynamically -->
             </select>
 
             <button type="submit">Search</button>

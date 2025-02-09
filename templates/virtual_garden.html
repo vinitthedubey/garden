@@ -4,39 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <title>Virtual Garden</title>
+  <title>Virtual Garden 🌿</title>
   <style>
-    body {
+   body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
+      background: #e8f4ef; /* Light green background */
+      overflow: hidden; /* Hide scrollbars */
     }
+
     .info-box {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8); /* Slightly more opaque */
       color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      padding: 15px 25px; /* Increased padding */
+      border-radius: 8px; /* More rounded corners */
+      font-size: 16px; /* Larger font size */
       display: none;
       z-index: 10;
+      backdrop-filter: blur(5px); /* Add blur effect */
     }
+
     #hint {
       position: absolute;
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      color: white;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
+      color: #2e7d32; /* Darker green hint */
+      background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+      padding: 10px 15px;
       border-radius: 5px;
       font-size: 14px;
       z-index: 10;
       animation: fadeout 10s forwards;
     }
+
     @keyframes fadeout {
       0% {
         opacity: 1;
@@ -45,50 +50,108 @@
         opacity: 0;
       }
     }
+
+    a-scene {
+      width: 100%;
+      height: 100%;
+    }
+
+    .clickable {
+      cursor: pointer; /* Change cursor to hand */
+      transition: transform 0.2s; /* Smooth hover effect */
+    }
+
+    .clickable:hover {
+      transform: scale(1.1); /* Slightly enlarge on hover */
+    }
   </style>
 </head>
 <body>
-  <div id="hint">Use W, A, S, D keys to move around!</div>
+  <div id="hint">Use W, A, S, D keys to move around! ⬆️⬅️⬇️➡️</div>
   <div id="info-box" class="info-box"></div>
 
   <a-scene>
     <a-assets>
-      <img id="rose" src="./static/data/image/garden/rose.jpg" alt="Rose">
-      <img id="sunflower" src="./static/data/image/garden/sunflower.jpeg" alt="Sunflower">
-      <img id="tulip" src="./static/data/image/garden/tulip.jpeg" alt="Tulip">
+      <img id="tulsi" src="./static/data/image/garden/tulsi.png" alt="Tulsi Plant">
+      <img id="Ashwagandha" src="./static/data/image/garden/Ashwagandha.avif" alt="Ashwagandha">
+      <img id="Brahmi" src="./static/data/image/garden/Brahmi.jpeg" alt="Brahmi">
+      <img id="Ashoka" src="./static/data/image/garden/Ashoka.jpg" alt="Ashoka"> 
+      <img id="Bael" src="./static/data/image/garden/Bael.png" alt="Bael">
+      <img id="nagarmotha" src="./static/data/image/garden/Nagarmotha.jpeg" alt="Nagarmotha">
+      <img id="bibhitaki" src="./static/data/image/garden/Bibhitaki.webp" alt="Bibhitaki">
+      <img id="daruharidra" src="./static/data/image/garden/Daruharidra.webp" alt="Daruharidra">
+      <img id="jatamansi" src="./static/data/image/garden/Jatamansi.jpg" alt="Jatamansi">
+      <img id="shankhpushpi" src="./static/data/image/garden/Shankhpushpi.jpg" alt="Shankhpushpi">
+      <img id="kutki" src="./static/data/image/garden/Kutki.jpeg" alt="Kutki">
+      <img id="chitrak" src="./static/data/image/garden/Chitrak.webp" alt="Chitrak">
+      <img id="aloevera" src="./static/data/image/garden/AloeVera.jpg" alt="Aloe Vera">
+      <img id="neem" src="./static/data/image/garden/Neem.jpg" alt="Neem">
+      <img id="chamomilla" src="./static/data/image/garden/Chamomilla.jpg" alt="Chamomilla">
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </a-assets>
 
-    <!-- Plants -->
-    <a-image id="plant1" src="#rose" position="-2 1 -3" height="1" width="1.5" class="clickable"></a-image>
-    <a-image id="plant2" src="#sunflower" position="0 1 -3" height="1" width="1.5" class="clickable"></a-image>
-    <a-image id="plant3" src="#tulip" position="2 1 -3" height="1" width="1.5" class="clickable"></a-image>
+    <a-image id="plant1" src="#tulsi" position="-2 1 -3" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant2" src="#Ashwagandha" position="0 1 -3" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant3" src="#Brahmi" position="2 1 -3" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant4" src="#Ashoka" position="-1 1 -5" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant5" src="#Bael" position="-1 1 -5" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant6" src="#nagarmotha" position="-3 1 -5" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant7" src="#bibhitaki" position="-1 1 -5" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant8" src="#daruharidra" position="1 1 -5" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant9" src="#jatamansi" position="3 1 -5" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant10" src="#shankhpushpi" position="-4 1 -7" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant11" src="#kutki" position="-2 1 -7" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant12" src="#chitrak" position="0 1 -7" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant13" src="#aloevera" position="2 1 -7" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant14" src="#neem" position="4 1 -7" height="1.5" width="1" class="clickable"></a-image>
+    <a-image id="plant15" src="#chamomilla" position="5 1 -5" height="1.5" width="1" class="clickable"></a-image>
 
-    <!-- Ground -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="30" height="30" color="green"></a-plane>
 
-    <!-- Sky -->
-    <a-sky color="#87CEEB"></a-sky>
 
-    <!-- Title -->
+    <a-plane position="0 0 0" rotation="-90 0 0" width="30" height="30" color="#689f38"></a-plane>
+    <a-sky gradient="startColor: #87CEEB; endColor: #E0F2F7;"></a-sky>
+
     <a-text
-      value="Virtual Garden"
-      color="green"
-      position="0 3 -5"
-      align="center"
-      width="6"
-    ></a-text>
+  value="🌿 Virtual Herbal Garden 🌿"
+  color="#2e7d32"
+  position="0 4 -5"
+  align="center"
+  width="8"
+  font="mozillavr"
+></a-text>
 
-    <!-- Camera -->
+
     <a-camera position="0 1.6 0">
       <a-cursor></a-cursor>
     </a-camera>
   </a-scene>
 
+
   <script>
     const plants = [
-      { id: 'plant1', name: 'Rose', uses: 'Decorative, Fragrance' },
-      { id: 'plant2', name: 'Sunflower', uses: 'Oil, Seeds, Decoration' },
-      { id: 'plant3', name: 'Tulip', uses: 'Garden Decoration' }
+      { id: 'plant1', name: 'Tulsi', medical_uses: 'Immunity, Respiratory' },
+      { id: 'plant2', name: 'Ashwagandha', medical_uses: 'Anxiety, Stress' },
+      { id: 'plant3', name: 'Brahmi', medical_uses: 'boost brain,reduce ADHD' },
+      { id: 'plant4', name: 'Ashoka', medical_uses: 'Manages Blood Sugar, Treats Asthma' },
+      { id: 'plant5', name: 'Bael', medical_uses: 'reduce swelling, Treats diarrhea' },
+      { id: 'plant6', name: 'Nagarmotha', medical_uses: 'Digestion, Weight Loss' },
+      { id: 'plant7', name: 'Bibhitaki', medical_uses: 'Respiratory Health' },
+      { id: 'plant8', name: 'Daruharidra', medical_uses: 'Liver Health' },
+      { id: 'plant9', name: 'Jatamansi', medical_uses: 'Calming, Insomnia' },
+      { id: 'plant10', name: 'Shankhpushpi', medical_uses: 'Memory Booster' },
+      { id: 'plant11', name: 'Kutki', medical_uses: 'Liver Detox, Digestion' },
+      { id: 'plant12', name: 'Chitrak', medical_uses: 'Appetite Booster, Metabolism' },
+      { id: 'plant13', name: 'Aloe Vera', medical_uses: 'Skin Health, Digestion' },
+      { id: 'plant14', name: 'Neem', medical_uses: 'Antibacterial, Skin Health' },
+      { id: 'plant15', name: 'Chamomilla', medical_uses: 'Relieves Anxiety, Sleep Aid' }
     ];
 
     const infoBox = document.getElementById('info-box');
@@ -99,7 +162,7 @@
       element.addEventListener('click', () => {
         if (!visible) {
           infoBox.style.display = 'block';
-          infoBox.innerText = `${plant.name}\nUses: ${plant.uses}`;
+          infoBox.innerText = `${plant.name}\nMedicinal Uses: ${plant.medical_uses}`;
           visible = true;
         } else {
           infoBox.style.display = 'none';
@@ -110,3 +173,5 @@
   </script>
 </body>
 </html>
+
+

@@ -1,16 +1,22 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: #e8f4ef; /* Light green background */
+    color: #333; /* Dark text color */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full viewport height */
 }
 
 h1 {
-    background-color: #28a745;
+    background: #4caf50; /* Green header */
     color: white;
     padding: 20px;
     margin-bottom: 20px;
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .quiz-container {
@@ -22,12 +28,18 @@ h1 {
 }
 
 .quiz-box {
-    width: 250px;
+    width: 280px; /* Slightly wider quiz boxes */
     padding: 20px;
-    background-color: white;
+    background: #fff; /* White quiz box background */
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
+    border: 1px solid #c8e6c9; /* Light green border */
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.quiz-box:hover {
+    transform: translateY(-5px); /* Move up slightly on hover */
 }
 
 .quiz-box p {
@@ -35,8 +47,9 @@ h1 {
 }
 
 .question {
-    color: green;
+    color: #2e7d32; /* Darker green question text */
     font-weight: bold;
+    margin-bottom: 10px; /* Add some space below question */
 }
 
 button {
@@ -44,26 +57,42 @@ button {
     margin: 5px 0;
     padding: 10px;
     font-size: 16px;
-    color: black;
-    border: 2px solid #ccc;
+    color: #333; /* Darker button text */
+    border: 1px solid #a5d6a7; /* Light green border */
     border-radius: 10px;
-    background-color: white;
+    background: #e8f5e9; /* Light green button background */
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
 }
 
 button:hover {
-    background-color: #f0f0f0;
+    background: #c8e6c9; /* Slightly darker green on hover */
+    border-color: #81c484; /* Darker green border on hover */
 }
 
 .correct-box {
-    background-color: #d4edda;
-    color: #155724;
-    border: 2px solid #c3e6cb;
+    background: #c8e6c9; /* Light green background for correct */
+    color: #1b5e20; /* Darker green text for correct */
+    border-color: #81c484; /* Darker green border for correct */
 }
 
 .incorrect-box {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 2px solid #f5c6cb;
+    background: #ffcdd2; /* Light red background for incorrect */
+    color: #b71c1c; /* Dark red text for incorrect */
+    border-color: #e57373; /* Lighter red border for incorrect */
 }
 
+/* Add some spacing around the quiz container for larger screens */
+@media (min-width: 768px) {
+    .quiz-container {
+        margin: 40px;
+    }
+}
+
+/* Style the buttons when they are disabled */
+button:disabled {
+    background-color: #eee; /* Gray background */
+    color: #999; /* Gray text */
+    border-color: #ddd; /* Light gray border */
+    cursor: default; /* Default cursor */
+}

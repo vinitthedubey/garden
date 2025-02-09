@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookmarks</title>
+    <title>Bookmarks 🔖</title>
     <link rel="stylesheet" href="/static/styles6.css">
 </head>
 <body>
-    <h1 class="sitename">Bookmarks</h1>
+    <h1 class="sitename">My Plant Bookmarks 🌿</h1>
 
     <div class="container">
         {% if bookmarks %}
@@ -15,12 +15,12 @@
                 <div class="bookmark-box">
                     <h3>{{ bookmark["plant_name"] }}</h3>
                     <p>{{ bookmark["notes"] }}</p>
-                    <a href="/plant_search_detail?plant_name={{ bookmark['plant_name'] }}" class="view-details">View Details</a>
-                    <button class="delete-btn" onclick="deleteBookmark('{{ bookmark['_id'] }}')">Delete</button>
+                    <a href="/plant_detail/{{ bookmark['plant_name'] }}" class="view-details">View Details 🌱</a>
+                    <button class="delete-btn" onclick="deleteBookmark('{{ bookmark['_id'] }}')">Remove ❌</button>
                 </div>
             {% endfor %}
         {% else %}
-            <p>No bookmarks available.</p>
+            <p>No bookmarks available. Add some plants to your collection! 🪴</p>
         {% endif %}
     </div>
 
@@ -32,10 +32,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert("Bookmark deleted successfully!");
+                    alert("Bookmark removed successfully! 🗑️");
                     location.reload();
                 } else {
-                    alert("Error deleting bookmark!");
+                    alert("Error removing bookmark!");
                 }
             });
         }

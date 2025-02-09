@@ -1,42 +1,39 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-    color: #013220;
+    background: #e8f4ef; /* Light, natural background */
+    color: #013220; /* Dark green text */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh; /* Ensure full viewport height */
 }
 
 .sitename {
     text-align: center;
     color: #013220;
-}
-
-.form-container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form label, form select, form button {
-    display: block;
-    margin: 10px 0;
+    font-size: 2em; /* Larger title */
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .section {
     margin: 20px auto;
     width: 90%;
+    max-width: 800px; /* Limit section width for larger screens */
     padding: 20px;
-    background: white;
+    background: #fff; /* White section background */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #c8e6c9; /* Subtle green border */
 }
 
 .section-title {
-    color: green;
+    color: #2e7d32; /* Slightly lighter green for titles */
     margin-bottom: 10px;
+    border-bottom: 1px solid #c8e6c9; /* Underline for titles */
+    padding-bottom: 5px;
 }
 
 iframe {
@@ -44,27 +41,47 @@ iframe {
     height: 400px;
     border: none;
     margin-top: 10px;
+    border-radius: 5px; /* Rounded corners for iframe */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for iframe */
 }
 
-
-.Full-img,.Leaf-img{
-    height: 300px;
-    width: 500px;
+.Full-img,
+.Leaf-img {
+    max-width: 100%; /* Make images responsive */
+    height: auto;
+    border-radius: 8px; /* Slightly rounded corners for images */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for images */
+    display: block; /* Prevents image from creating extra space */
+    margin: 0 auto; /* Center images */
 }
 
+ul {
+    list-style-type: disc; /* Use bullet points */
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+b {
+    font-weight: bold;
+    color: #1b5e20; /* Darker green for bold text */
+}
 
 textarea {
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 1px solid #c8e6c9; /* Light green border for textarea */
     border-radius: 5px;
     resize: vertical;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 .bookmark-btn {
-    background-color: #007bff;
+    background-color: #4caf50; /* Brighter green for button */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -72,8 +89,54 @@ textarea {
     border-radius: 5px;
     font-size: 1em;
     transition: background-color 0.3s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for button */
 }
 
 .bookmark-btn:hover {
-    background-color: #0056b3;
+    background-color: #388e3c; /* Darker green on hover */
+}
+
+
+.social-share {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.share-icon {
+    font-size: 24px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.share-icon i {
+    font-size: 20px;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.twitter {
+    background-color: #1DA1F2;
+}
+
+.instagram {
+    background-color: #E4405F;
+}
+
+.share-icon:hover {
+    transform: scale(1.1);
 }

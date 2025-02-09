@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment {{ payment_status }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8f4; /* Light green background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Ensure full viewport height */
+            color: #333; /* Dark text color */
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center text within the container */
+            max-width: 600px;  /* Limit container width */
+            width: 90%; /* Responsive width */
+        }
+
+        h1 {
+            color: #2e8b57; /* Forest green heading */
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.6; /* Improve readability */
+        }
+
+        b {
+          color: #d4af37; /* golden color for status */
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2e8b57; /* Forest green button */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        a:hover {
+            background-color: #1e6b47; /* Darker green on hover */
+        }
+
+        /* Plant-themed background image (optional) */
+        body::before {  /* Use ::before pseudo-element for background */
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("https://64.media.tumblr.com/19a52050d0e8e7c666d91eb227a1a6e2/tumblr_o6np28NsOg1rb3pk0o1_500.gif"); /* Replace with your plant image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.7; /* Adjust opacity for subtle background */
+            z-index: -1; /* Place behind the content */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Payment {{ payment_status }}!</h1>
+        <p>Dear {{ name }},</p>
+        <p>Your payment status: <b>{{ payment_status }}</b></p>
+
+        <p>We have sent a confirmation email to {{ email }}.</p>
+
+        <a href="/mainpage">Return to Home</a>
+    </div>
+
+</body>
+</html>

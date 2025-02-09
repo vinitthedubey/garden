@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plant Details</title>
     <link rel="stylesheet" href="/static/styles3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 </head>
 <body>
     <h1 class="sitename">Plant Details</h1>
@@ -76,6 +78,25 @@
                 <button type="submit" class="bookmark-btn">Bookmark</button>
             </form>
         </div>
+
+        <div class="section">
+            <h2 class="section-title">Share this Plant</h2>
+            <div class="social-share">
+                <a href="https://wa.me/?text=Check%20out%20{{ plant_name }}%20on%20our%20Virtual%20Herbal%20Garden!" target="_blank" class="share-icon whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com/plant/{{ plant_name }}" target="_blank" class="share-icon facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Check%20out%20{{ plant_name }}%20on%20our%20Virtual%20Herbal%20Garden!&url=https://yourwebsite.com/plant/{{ plant_name }}" target="_blank" class="share-icon twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" class="share-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+        
     {% else %}
         <p>{{ error }}</p>
     {% endif %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Garden Object Detection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Use a more readable font */
+            background-color: #f0f8f4; /* Light, garden-like background */
+            color: #333; /* Dark text for contrast */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+            min-height: 100vh; /* Ensure full viewport height */
+        }
+
+        .header-top {
+            background-color: #4CAF50; /* Green header */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%; /* Full width header */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .header-top h1 {
+            margin: 0; /* Remove default margin */
+        }
+
+        .header-bottom {
+            background-color: #81C784; /* Lighter green */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .header-bottom h1 {
+            margin: 0;
+        }
+
+        .video-container {
+            background-color: #fff; /* White container for video */
+            width: 900px;
+            height: 600px; /* Adjust as needed */
+            border-radius: 10px; /* Slightly rounded corners */
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+            margin: 40px auto; /* Center the video container */
+            overflow: hidden; /* Hide overflowing content */
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Maintain aspect ratio and cover container */
+            border-radius: 10px;
+            display: block; /* Prevent image from creating extra space */
+        }
+
+        .new {
+            background-color: #4CAF50; /* Green "New" banner */
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: 20px; /* Space above the banner */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header-top">
+        <h1>Object Detection in Garden</h1>
+    </header>
+    <header class="header-bottom">
+        <h1>Output Video</h1>
+    </header>
+
+    <section class="video-container">
+        <img src="{{ url_for('webapp') }}" alt="Garden Video">
+    </section>
+
+    <div class="new">
+        </div>
+
+</body>
+</html>

@@ -44,17 +44,17 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="/" class="active">Home</a></li>
-          <li class="dropdown"><a href="about.html"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown"><a href="/login"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="team.html">Team</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
+              <li><a href="/login">Ask Ai</a></li>
+              <li><a href="/login ">Store</a></li>
+              <li><a href="/login">Plant Detection</a></li>
               
             </ul>
           </li>
           <li><a href="/login">Quiz</a></li>
           <li><a href="/login">Plant of Moment</a></li>
-           <li><a href="/login">Plant Gallery</a></li>
-          <!--<li><a href="blog.html">Blog</a></li> -->
+           <li><a href="/login">Advanced Search</a></li>
           <li><a href="/login">Virtual Tour</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -366,8 +366,8 @@
           <h4>Useful Links</h4>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="about.html">About us</a></li>
-            <li><a href="feature.html">Features</a></li>
+            <li><a href="https://github.com/vinitthedubey">About us</a></li>
+            <li><a href="https://github.com/vinitthedubey/garden">About Project</a></li>
           </ul>
         </div>
 
@@ -377,7 +377,7 @@
             <li><a href="/login">Quiz</a></li>
             <li><a href="/login">Plant of Moment</a></li>
             <li><a href="/login">Plant Search</a></li>
-            <li><a href="/login">Detailed Query</a></li>
+            <li><a href="/login">Detailed Query(AI)</a></li>
             <li><a href="/login">Virtual Tour</a></li>
           </ul>
         </div>
@@ -385,13 +385,55 @@
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-          </form>
-        </div>
+          
+          <!-- Flash messages for feedback -->
+          {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                  {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">{{ message }}</div>
+                  {% endfor %}
+              {% endif %}
+          {% endwith %}
+          
+          <!-- Updated form to use Flask route instead of PHP -->
+          <form id="newsletter-form" class="php-email-form">
+            <div class="newsletter-form">
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <input type="submit" value="Subscribe">
+            </div>
+            <div class="loading" style="display: none;">Loading...</div>
+            <div class="error-message" style="display: none;"></div>
+            <div class="sent-message" style="display: none;">Your subscription request has been sent. Thank you!</div>
+        </form>
+        
+        <script>
+        document.getElementById("newsletter-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents form from reloading the page
+        
+            let email = document.getElementById("email").value.trim();
+        
+            if (!email) {
+                alert("Please enter a valid email address!");
+                return;
+            }
+        
+            fetch("/subscribe", {
+                method: "POST",
+                body: new URLSearchParams({ "email": email }),
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Your subscription request has been sent. Thank you!");
+                document.getElementById("email").value = ""; // Clear input field
+            })
+            .catch(error => {
+                alert("Something went wrong. Please try again!");
+            });
+        });
+        </script>
+        
+      
 
       </div>
     </div>

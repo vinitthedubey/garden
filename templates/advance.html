@@ -1,59 +1,92 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Finder</title>
-</head>
-<body>
-    <h1>Select Category and Feature</h1>
-    <form method="POST" action="/plants">
-        <label for="category">Select Category:</label>
-        <select name="category" id="category">
-            {% for category in categories %}
-                <option value="{{ category }}">{{ category }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        
-        <label for="feature">Select Feature:</label>
-        <select name="feature" id="feature">
-            <option value="Digestion">Digestion</option>
-            <option value="Cold & Cough">Cold & Cough</option>
-            <option value="Immunity">Immunity</option>
-            <option value="Inflammation">Inflammation</option>
-            <option value="Pain Relief">Pain Relief</option>
-            <option value="Skin Health">Skin Health</option>
-            <option value="Heart Health">Heart Health</option>
-            <option value="Liver Health">Liver Health</option>
-            <option value="Antioxidant Properties">Antioxidant Properties</option>
-        </select>
-        <br><br>
-        
-        <button type="submit">Find Plants</button>
-    </form>
-</body>
-</html> -->
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plant Finder</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e8f4ef;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #c8e6c9;
+            border-radius: 5px;
+            box-sizing: border-box;
+            appearance: none;
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232e7d32'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") no-repeat right 10px center;
+            padding-right: 30px;
+        }
+
+        button {
+            background: #4caf50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background: #388e3c;
+        }
+
+        #feature_container {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
     <script>
         function updateFeatureDropdowns() {
             const featureCount = parseInt(document.getElementById("feature_count").value);
             const featureContainer = document.getElementById("feature_container");
 
-            // Clear any existing feature dropdowns
             featureContainer.innerHTML = "";
 
-            // Add the specified number of feature dropdowns
             for (let i = 0; i < featureCount; i++) {
                 const label = document.createElement("label");
                 label.innerText = `Select Feature ${i + 1}:`;
@@ -87,6 +120,8 @@
                 featureContainer.appendChild(document.createElement("br"));
             }
         }
+
+        window.addEventListener('DOMContentLoaded', updateFeatureDropdowns);
     </script>
 </head>
 <body>
@@ -111,21 +146,7 @@
         <br><br>
 
         <div id="feature_container">
-            <!-- Feature dropdowns will be dynamically added here -->
-            <label for="feature_0">Select Feature 1:</label>
-            <select name="feature_0" id="feature_0">
-                <option value="Digestion">Digestion</option>
-                <option value="Cold & Cough">Cold & Cough</option>
-                <option value="Immunity">Immunity</option>
-                <option value="Inflammation">Inflammation</option>
-                <option value="Pain Relief">Pain Relief</option>
-                <option value="Skin Health">Skin Health</option>
-                <option value="Heart Health">Heart Health</option>
-                <option value="Liver Health">Liver Health</option>
-                <option value="Antioxidant Properties">Antioxidant Properties</option>
-            </select>
-            <br>
-        </div>
+            </div>
 
         <button type="submit">Find Plants</button>
     </form>
