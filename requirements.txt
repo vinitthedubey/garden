@@ -3,7 +3,6 @@ firebase-admin==5.1.0
 pymongo[srv]==3.11
 pandas
 numpy
-sklearn
 joblib
 google-generativeai
 googletrans==4.0.0-rc1
