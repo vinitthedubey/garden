@@ -448,7 +448,7 @@ def ask():
     translated_question = translator.translate(user_question, dest="en").text
 
     # Get response from Gemini AI
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("models/gemini-1.5-flash")
     response = model.generate_content(translated_question).text
 
     # Format response (bold headings, spacing, and structure)
